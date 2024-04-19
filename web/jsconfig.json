@@ -2,9 +2,17 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"/*": ["./*"]
+			"/*": [
+				"./*"
+			]
 		},
-		"lib": ["DOM", "ES2022"]
+		"lib": [
+			"DOM",
+			"ES2022"
+		]
 	},
-	"include": ["."]
+	"include": [
+		".",
+		"../server.ts"
+	]
 }

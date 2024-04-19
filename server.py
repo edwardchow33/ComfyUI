@@ -384,7 +384,8 @@ class PromptServer():
 
         @routes.get("/prompt")
         async def get_prompt(request):
-            return web.json_response(self.get_queue_info())
+            return web.json_response({"exec_info": {"queue_remaining": 0}})
+            # return web.json_response(self.get_queue_info())
 
         def node_info(node_class):
             obj_class = nodes.NODE_CLASS_MAPPINGS[node_class]
@@ -644,3 +645,10 @@ class PromptServer():
                 logging.warning(traceback.format_exc())
 
         return json_data
+    
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    server = PromptServer(loop)
+    server.add_routes()
+    loop.run_until_complete(server.start(args.address, args.port))
+    loop.run_forever()
